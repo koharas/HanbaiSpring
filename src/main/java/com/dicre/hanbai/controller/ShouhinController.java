@@ -16,7 +16,7 @@ import com.dicre.hanbai.model.ShouhinRepository;
 
 
 @Controller
-public class HanbaiController {
+public class ShouhinController {
 
 	 @Autowired
 	 private ShouhinRepository repository;

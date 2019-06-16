@@ -27,7 +27,7 @@ public class UriageController {
 
 
 	@RequestMapping(value="/uriage", method=RequestMethod.GET)
-	 public ModelAndView del(
+	 public ModelAndView uriage(
 			 @RequestParam("sid")Integer sid,
 			 ModelAndView mv) {
 
