@@ -17,14 +17,14 @@
 <table>
 <tr><th>商品ID</th><th>商品名</th><th>単価</th></tr>
 
-<tr th:each="shouhin : ${list}">
-	<td th:text="${shouhin.sid}"></td>
-	<td th:text="${shouhin.sname}"></td>
-	<td th:text="${shouhin.tanka}">円</td>
+<tr th:each="shouhin : ${list}" th:object="${shouhin}">
+	<td th:text="*{sid}"></td>
+	<td th:text="*{sname}"></td>
+	<td th:text="*{tanka}">円</td>
 
-	<td><a th:href="'del?sid=' + ${shouhin.sid}">削除</a></td>
-	<td><a th:href="'update?sid=' + ${shouhin.sid}">変更</a></td>
-	<td><a th:href="'uriage?sid=' + ${shouhin.sid}">売上</a></td>
+	<td><a th:href="|del?sid=*{sid}|">削除</a></td>
+	<td><a th:href="|update?sid=*{sid}|">変更</a></td>
+	<td><a th:href="|uriage?sid=*{sid}|">売上</a></td>
 </tr>
 </table>
 
