@@ -24,6 +24,7 @@ public class ShouhinController {
 
 	 @RequestMapping(value="/slist", method=RequestMethod.GET)
 	 public ModelAndView slist( ModelAndView mv) {
+
 		List<Shouhin> list = repository.findAll();
 
 		mv.addObject("list",list);
