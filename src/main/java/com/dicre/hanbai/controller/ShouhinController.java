@@ -22,22 +22,24 @@ public class ShouhinController {
 	 private ShouhinRepository repository;
 
 
-	@RequestMapping(value="/slist", method=RequestMethod.GET)
-	 public ModelAndView slist(
-			 @ModelAttribute("formModel") Shouhin shouhin,
-			 ModelAndView mv) {
+	 @RequestMapping(value="/slist", method=RequestMethod.GET)
+	 public ModelAndView slist( ModelAndView mv) {
 		List<Shouhin> list = repository.findAll();
 
 		mv.addObject("list",list);
 
 		mv.setViewName("slist");
-		 return mv;
+
+		return mv;
 	 }
 
 	 @RequestMapping(value="/slist", method=RequestMethod.POST)
 	 public String shouhinAdd(
-			 @ModelAttribute("formModel") Shouhin shouhin,
+			 @RequestParam("sname")String sname,
+			 @RequestParam("tanka")int tanka,
 			 ModelAndView mv) {
+
+		 Shouhin shouhin = new Shouhin(sname,tanka);
 
 		 repository.save(shouhin);
 

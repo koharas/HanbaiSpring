@@ -21,6 +21,17 @@ public class Shouhin {
 	@Column(name="tanka")
 	private int tanka;
 
+
+	public Shouhin() {
+	}
+
+
+	public Shouhin(String sname, int tanka) {
+		this.sname = sname;
+		this.tanka = tanka;
+	}
+
+
 	public int getSid() {
 		return sid;
 	}
