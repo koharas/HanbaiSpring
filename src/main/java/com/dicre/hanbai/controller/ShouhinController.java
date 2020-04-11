@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +22,7 @@ public class ShouhinController {
 	 private ShouhinRepository repository;
 
 
-	 @RequestMapping(value="/slist", method=RequestMethod.GET)
+	 @GetMapping("/slist")
 	 public ModelAndView slist( ModelAndView mv) {
 
 		List<Shouhin> list = repository.findAll();
@@ -34,8 +34,8 @@ public class ShouhinController {
 		return mv;
 	 }
 
-	 @RequestMapping(value="/slist", method=RequestMethod.POST)
-	 public String shouhinAdd(
+	 @PostMapping("/slist")
+	 public ModelAndView shouhinAdd(
 			 @RequestParam("sname")String sname,
 			 @RequestParam("tanka")int tanka,
 			 ModelAndView mv) {
@@ -44,11 +44,13 @@ public class ShouhinController {
 
 		 repository.save(shouhin);
 
-		 return "redirect:/slist";
+		 mv.setViewName("redirect:/slist");
+
+		 return mv;
 	 }
 
 
-	@RequestMapping(value="/del", method=RequestMethod.GET)
+	@GetMapping("/del")
 	 public ModelAndView del(
 			 @RequestParam("sid")Integer sid,
 			 ModelAndView mv) {
@@ -61,7 +63,7 @@ public class ShouhinController {
 		 return mv;
 	 }
 
-	 @RequestMapping(value="/del", method=RequestMethod.POST)
+	 @PostMapping("/del")
 	 public String shouhinDel(
 			 @RequestParam("sid")Integer sid,
 			 ModelAndView mv) {
@@ -72,7 +74,7 @@ public class ShouhinController {
 		 return "redirect:/slist";
 	 }
 
-	@RequestMapping(value="/update", method=RequestMethod.GET)
+	@GetMapping("/update")
 	 public ModelAndView update(
 			 @RequestParam("sid")Integer sid,
 			 @ModelAttribute("formModel") Shouhin shouhin,
@@ -85,7 +87,7 @@ public class ShouhinController {
 		 return mv;
 	 }
 
-	 @RequestMapping(value="/update", method=RequestMethod.POST)
+	 @PostMapping("/update")
 	 public String shouhinUpdate(
 			 @ModelAttribute("formModel") Shouhin shouhin,
 			 ModelAndView mv) {
